@@ -1,4 +1,4 @@
-function [ikine_t,flag]=mymodikine(Tbe)
+function [ikine_t,flag]=mymodikine(MDH,Tbe)
  
 %       theta         d          a               offset
 % MDH=[theta1-pi/2   199         0              0;
@@ -14,15 +14,25 @@ flag=0;%
 %3 腕部奇异解
 ikine_t=zeros(8,6);%初始化
 
-d1=199;
-d2=208.5;
-d3=-173.5;
-d4=121;
-d5=120.179;
-d6=104.5;
-a3=809.779;
-a4=719.175;
-offset=[-pi/2 -pi/2 0 pi/2 0 pi/2];
+% d1=199;
+% d2=208.5;
+% d3=-173.5;
+% d4=121;
+% d5=120.179;
+% d6=104.5;
+% a3=809.779;
+% a4=719.175;
+% offset=[-pi/2 -pi/2 0 pi/2 0 pi/2];
+
+d1=MDH(1,2);
+d2=MDH(2,2);
+d3=MDH(3,2);
+d4=MDH(4,2);
+d5=MDH(5,2);
+d6=MDH(6,2);
+a3=MDH(3,3);
+a4=MDH(4,3);
+offset=[MDH(1,1) MDH(2,1) MDH(3,1) MDH(4,1) MDH(5,1) MDH(6,1)];
 
 
 nx= Tbe(1,1);
@@ -46,6 +56,8 @@ if 0==vv
     flag=1;
     return;
 end
+
+%J1
 t11=atan2(d2+d3+d4,sqrt((py-d6*ay)^2+(d6*ax-px)^2-(d2+d3+d4)^2))-atan2(py-d6*ay,d6*ax-px);
 t12=atan2(d2+d3+d4,-sqrt((py-d6*ay)^2+(d6*ax-px)^2-(d2+d3+d4)^2))-atan2(py-d6*ay,d6*ax-px);
 %J5 (2,1) (2,2)

@@ -10,7 +10,7 @@ robot=SerialLink([L1,L2,L3,L4,L5,L6]);   %SerialLink 类函数
 % robot.display();  %Link 类函数
 robot.teach
 
-modt06=robot.fkine([deg2rad(-6.75),deg2rad(-5.48),deg2rad(-117.13),deg2rad(44.60),deg2rad(90.08),deg2rad(35.49)]); %工具箱正解函数
+%modt06=robot.fkine([deg2rad(-6.75),deg2rad(-5.48),deg2rad(-117.13),deg2rad(44.60),deg2rad(90.08),deg2rad(35.49)]); %工具箱正解函数
 modmyt06=myfkine(deg2rad(-6.75),deg2rad(-5.48),deg2rad(-117.13),deg2rad(44.60),deg2rad(90.08),deg2rad(35.49))   ;    %手写的正解函数
 %手写反解
 inv06=mymodikine(modmyt06);
